@@ -1,38 +1,91 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  }
+
+body {
+	background: #9c2748;
+	background: linear-gradient(0deg, rgba(156,39,72,1) 62%, rgba(108,192,74,1) 91%);
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Robot', sans-serif;
+	min-height: 100vh;
+  }
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+	min-height: 100vh;
+	padding: 2rem;
+	color: white;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+header {
+	text-align: center;
+	margin-bottom: 3rem;
   }
-  to {
-    transform: rotate(360deg);
+
+header h1 {
+	font-size: 2.5rem;
+	margin-bottom: 0.5rem;
+	text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   }
-}
+
+header p {
+	font-size: 1.1rem;
+	opacity: 0.9;
+  }
+
+.stats-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 1.5rem;
+  }
+
+.loading, .error {
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	justify-content: center;
+	min-height: 100vh;
+  	text-align: center;
+  }
+
+.error button {
+  	margin-top: 1rem;
+  	padding: 0.75rem 2rem;
+  	font-size: 1rem;
+  	background: rgba(255, 255, 255, 0.2);
+  	color: white;
+  	border: 2px solid white;
+  	border-radius: 10px;
+  	cursor: pointer;
+  	transition: all 0.3s ease;
+  }
+
+.error button:hover {
+  	background: rgba(255, 255, 255, 0.3);
+  	transform: scale(1.05);
+  }
+
+.last-update {
+  	font-size: 0.9rem;
+  	opacity: 0.7;
+  	margin-top: 0.5rem;
+  }
+
+footer {
+	text-align: center;
+	margin-top: 3rem;
+	opacity: 0.8;
+	font-size: 0.9rem;
+  }
+
+@media (max-width: 768px) {
+	header h1 {
+		font-size: 2rem;
+	}
+
+	.stat-value {
+		font-size: 2rem;
+	}
+  }
