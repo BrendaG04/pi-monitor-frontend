@@ -17,7 +17,7 @@ function App() {
 	//fetch the  stats from backend
 	const fetchStats = async () => {
 		try {
-			const response = await fetch('http://localhost:8080/stats');
+			const response = await fetch('/api/stats');
 			if (!response.ok) {
 				throw new Error('Failed to fetch system stats');
 			}
@@ -81,7 +81,7 @@ function App() {
 			<ConnectionStatus isConnected={isConnected} lastUpdate={lastUpdate} />
 
 			<header>
-				<h1>Brenda's Raspberry Pi Monitor</h1>
+				<h1>Brenda's Raspberry Pi Monitor v2.0</h1>
 				<p>Real-time system statistics</p>
 			</header>
 
@@ -123,7 +123,7 @@ function App() {
 				{/* Temperature History Chart*/}
 				{temperatureHistory.length > 0 && (
 					<TemperatureChart temperatureHistory = {temperatureHistory} />
-				)};
+				)}
 
 			</div>
 
