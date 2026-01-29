@@ -1,10 +1,14 @@
 import React, {useState, useEffect } from 'react' ;
+import { AuthProvider, useAuth } from './AuthContext';
+import Login from './components/Login';
 import StatCard from './components/StatCard';
 import ConnectionStatus from './components/ConnectionStatus';
 import TemperatureChart from './components/TemperatureChart';
 import './App.css';
 
-function App() {
+
+function Dashboard() {
+
 
 	//state will hold the systemstats from backend
 	const [ stats, setStats ] = useState(null);
@@ -14,13 +18,29 @@ function App() {
 	const [ isConnected, setIsConnected] = useState(true);
 	const [ temperatureHistory, setTemperatureHistory ] = useState([]);
 
+	const { token, logout, username} = useAuth();
+
 	//fetch the  stats from backend
 	const fetchStats = async () => {
 		try {
-			const response = await fetch('/api/stats');
+			const apiUrl = process.env.NODE_ENV === 'development'
+				? 'http://localhost:8080/stats'
+				: '/api/stats';
+
+			const response = await fetch(apiUrl, {
+				headers: {
+					'Authorization': `Bearer ${token}`
+				}
+			});
+			if (response.status === 401 || response.status === 403) {
+				logout();
+				return;
+			}
+
 			if (!response.ok) {
 				throw new Error('Failed to fetch system stats');
 			}
+
 			const data = await response.json();
 			setStats(data);
 			setError(null);
@@ -44,12 +64,17 @@ function App() {
 
 	//runs when components mount
 	useEffect(() => {
-		fetchStats();
+		if (token) {
+			fetchStats();
+			const interval = setInterval(fetchStats, 2000);
+			return () => clearInterval(interval);
+		}
+	}, [token]);
 
-		const interval = setInterval(fetchStats, 2000);
+	const handleLogout = () => {
+		logout();
+	};
 
-		return () => clearInterval(interval);
-	}, []);
 
 	if (loading) {
 		return ( 
@@ -81,9 +106,21 @@ function App() {
 			<ConnectionStatus isConnected={isConnected} lastUpdate={lastUpdate} />
 
 			<header>
-				<h1>Brenda's Raspberry Pi Monitor v2.0</h1>
-				<p>Real-time system statistics</p>
+				<div className = "header-center">
+					<h1>Brenda's Raspberry Pi Monitor v2.0</h1>
+					<p>Real-time system statistics</p>
+				</div>
+				<div className = "header-right">
+					<span className = "username"> {username} </span>
+					<button onClick = {handleLogout} className = "logout-button">
+						Logout
+					</button>
+				</div>
 			</header>
+
+
+
+
 
 			<div className = "stats-container">
 				{/* CPU Temp Card */}
@@ -133,5 +170,23 @@ function App() {
 		</div>
 	);
 }
+
+function App() {
+	return (
+		<AuthProvider>
+			<AuthenticatedApp />
+		</AuthProvider>
+	);
+}
+
+function AuthenticatedApp() {
+	const { isAuthenticated } = useAuth();
+
+	if (!isAuthenticated) {
+		return <Login />
+	}
+	return <Dashboard />
+}
+
 
 export default App;
