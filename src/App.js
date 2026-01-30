@@ -1,6 +1,7 @@
 import React, {useState, useEffect } from 'react' ;
 import { AuthProvider, useAuth } from './AuthContext';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import StatCard from './components/StatCard';
 import ConnectionStatus from './components/ConnectionStatus';
 import TemperatureChart from './components/TemperatureChart';
@@ -181,9 +182,13 @@ function App() {
 
 function AuthenticatedApp() {
 	const { isAuthenticated } = useAuth();
+	const [showSignup, setShowSignup] = useState(false);
 
 	if (!isAuthenticated) {
-		return <Login />
+		if (showSignup) {
+			return <Signup onSwitchToLogin= { () => setShowSignup(false)} />;
+		}
+		return <Login onSwitchToSignup={() => setShowSignup(true)} />;
 	}
 	return <Dashboard />
 }

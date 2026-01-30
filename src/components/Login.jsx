@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../AuthContext';
 import './Login.css';
 
-function Login() {
+function Login({ onSwitchToSignup }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -41,13 +41,18 @@ function Login() {
     }
   };
 
+ const handleGuestLogin = () => {
+	setUsername('guest');
+	setPassword('Guest123!');
+ };
+
   return (
     <div className="login-container">
       <div className="login-card">
         <div className="login-header">
           <h1>🍓</h1>
           <h2>Pi Monitor</h2>
-          <p>Sign in to view your system stats</p>
+          <p>Sign in to view system stats</p>
         </div>
 
         <form onSubmit={handleSubmit} className="login-form">
@@ -90,10 +95,28 @@ function Login() {
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
 
+          <button
+            type="button"
+            onClick={handleGuestLogin}
+            className="guest-button"
+          >
+             Use Guest Account
+          </button>
+
           <div className="login-hint">
-            <small>Default: admin / Admin123!</small>
+	    <small>Guest: guest / Guest123!</small>
+	  </div>
+          <div className="switch-link">
+            Don't have an account?{' '}
+            <button 
+              type="button" 
+              onClick={onSwitchToSignup}
+              className="link-button"
+            >
+              Sign up here
+            </button>
           </div>
-        </form>
+	</form>
       </div>
     </div>
   );
