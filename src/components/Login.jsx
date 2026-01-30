@@ -91,7 +91,7 @@ function Login() {
           </button>
 
           <div className="login-hint">
-            <small>Default: admin / admin123</small>
+            <small>Default: admin / Admin123!</small>
           </div>
         </form>
       </div>
