@@ -29,7 +29,7 @@ function Signup({ onSwitchToLogin }) {
         : '/api/auth/signup';
 	*/
 
-      const apiUrl = 'https://pi-monitor-production.up.railway.app/auth/signup';
+      const apiUrl = 'https://pi-monitor-production.up.railway.app/api/auth/signup';
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {

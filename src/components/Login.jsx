@@ -20,7 +20,7 @@ function Login({ onSwitchToSignup }) {
 	: '/api/auth/login';
 	*/
 
-      const apiUrl = 'https://pi-monitor-production.up.railway.app/auth/login';
+      const apiUrl ="https://pi-monitor-production.up.railway.app/api/auth/login";
 	
       const response = await fetch(apiUrl, {
         method: 'POST',
