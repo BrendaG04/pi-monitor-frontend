@@ -15,9 +15,12 @@ function Login({ onSwitchToSignup }) {
     setLoading(true);
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL
+      /*const apiUrl = process.env.REACT_APP_API_URL
 	? `${process.env.REACT_APP_API_URL}/auth/login`
 	: '/api/auth/login';
+	*/
+
+      const apiUrl = 'https://pi-monitor-production.up.railway.app/auth/login';
 	
       const response = await fetch(apiUrl, {
         method: 'POST',
