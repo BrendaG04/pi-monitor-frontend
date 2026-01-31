@@ -24,8 +24,8 @@ function Dashboard() {
 	//fetch the  stats from backend
 	const fetchStats = async () => {
 		try {
-			const apiUrl = process.env.NODE_ENV === 'development'
-				? 'http://localhost:8080/stats'
+			const apiUrl = process.env.REACT_APP_API_URL
+				? `${process.env.REACT_APP_API_URL}/stats`
 				: '/api/stats';
 
 			const response = await fetch(apiUrl, {

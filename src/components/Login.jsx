@@ -15,8 +15,8 @@ function Login({ onSwitchToSignup }) {
     setLoading(true);
 
     try {
-      const apiUrl = process.env.NODE_ENV === 'development'
-	? 'http://localhost:8080/auth/login'
+      const apiUrl = process.env.REACT_APP_API_URL
+	? `${process.env.REACT_APP_API_URL}/auth/login`
 	: '/api/auth/login';
 	
       const response = await fetch(apiUrl, {
