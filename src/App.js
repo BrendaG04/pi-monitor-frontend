@@ -7,6 +7,7 @@ import ConnectionStatus from './components/ConnectionStatus';
 import TemperatureChart from './components/TemperatureChart';
 import './App.css';
 
+console.log("Current API URL:", process.env.REACT_APP_API_URL);
 
 function Dashboard() {
 
