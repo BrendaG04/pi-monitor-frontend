@@ -24,11 +24,10 @@ function Signup({ onSwitchToLogin }) {
     }
 
     try {
-      /*const apiUrl = process.env.REACT_APP_API_URL
+      const apiUrl = process.env.REACT_APP_API_URL
         ? `${process.env.REACT_APP_API_URL}/auth/signup`
         : '/api/auth/signup';
-	*/
-      const apiUrl = `${process.env.REACT_APP_API_URL}/auth/signup`; 
+
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
