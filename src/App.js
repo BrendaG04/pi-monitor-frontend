@@ -25,11 +25,10 @@ function Dashboard() {
 	//fetch the  stats from backend
 	const fetchStats = async () => {
 		try {
-			/*const apiUrl = process.env.REACT_APP_API_URL
+			const apiUrl = process.env.REACT_APP_API_URL
 				? `${process.env.REACT_APP_API_URL}/stats`
 				: '/api/stats';
-			*/
-			const apiUrl = 'https://pi-monitor-production.up.railway.app/stats';
+
 			const response = await fetch(apiUrl, {
 				headers: {
 					'Authorization': `Bearer ${token}`
