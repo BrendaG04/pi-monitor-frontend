@@ -1,5 +1,6 @@
 import React, {useState, useEffect } from 'react' ;
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { Analytics } from '@vercel/analytics/react';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import StatCard from './components/StatCard';
@@ -177,6 +178,7 @@ function App() {
 	return (
 		<AuthProvider>
 			<AuthenticatedApp />
+			<Analytics />
 		</AuthProvider>
 	);
 }
