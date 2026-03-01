@@ -71,7 +71,7 @@ function Dashboard() {
 			const interval = setInterval(fetchStats, 2000);
 			return () => clearInterval(interval);
 		}
-	}, [token]);
+	}, [token]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	const handleLogout = () => {
 		logout();
