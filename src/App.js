@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react' ;
-import { AuthProvider, useAuth } from './AuthContext';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import StatCard from './components/StatCard';
